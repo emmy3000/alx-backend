@@ -6,9 +6,10 @@ This script defines a function for calculating start and end indexes for a
 given pagination scenario. It also provides an example of how to use the
 function.
 """
+from typing import Tuple
 
 
-def index_range(page, page_size):
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Calculate the start and end indexes for a given page and page size.
 
@@ -21,7 +22,7 @@ def index_range(page, page_size):
         page_size (int): The number of items per page.
 
     Returns:
-        tuple: A tuple (start_index, end_index) representing the range
+        Tuple[int, int]: A tuple (start_index, end_index) that reps the range
         of indexes to return in a list for the given pagination parameters.
     """
     if page < 1 or page_size < 1:
