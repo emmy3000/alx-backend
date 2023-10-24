@@ -28,6 +28,6 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     if page < 1 or page_size < 1:
         raise ValueError("Both page and page_size must be positive integers.")
 
-    start_index = (page - 1) * page_size + 1
+    start_index = (page - 1) * page_size
     end_index = page * page_size
     return start_index, end_index
