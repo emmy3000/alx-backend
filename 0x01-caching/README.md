@@ -1,6 +1,5 @@
 # 0x01. Caching
 
-
 ## Introduction
 
 Caching is a crucial concept in computer science and software engineering that significantly impacts the performance and efficiency of applications. In this README documentation, we will explore caching systems, various caching strategies, and their importance. We'll cover the following topics:
@@ -13,7 +12,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    Caching System: A caching system is a mechanism used to store frequently accessed data in a high-speed storage layer (cache) to accelerate data retrieval and reduce the load on the primary data source, such as a database.
+- **Caching System:** A caching system is a mechanism used to store frequently accessed data in a high-speed storage layer (cache) to accelerate data retrieval and reduce the load on the primary data source, such as a database.
 
 #### Implementation: Explain the basic principles of caching and how it can improve the performance of applications.
 
@@ -23,7 +22,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    FIFO (First-In-First-Out): FIFO is a caching strategy where the oldest cached items are the first to be removed when the cache reaches its capacity limit.
+- **FIFO (First-In-First-Out):** FIFO is a caching strategy where the oldest cached items are the first to be removed when the cache reaches its capacity limit.
 
 #### Implementation: Describe how FIFO works and provide examples of situations where it can be effectively used.
 
@@ -33,7 +32,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    LIFO (Last-In-First-Out): LIFO is a caching strategy where the most recently cached items are the first to be removed when the cache reaches its capacity limit.
+- **LIFO (Last-In-First-Out):** LIFO is a caching strategy where the most recently cached items are the first to be removed when the cache reaches its capacity limit.
 
 #### Implementation: Explain how LIFO operates and offer insights into its use cases.
 
@@ -43,7 +42,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    LRU (Least Recently Used): LRU is a caching strategy that evicts the least recently accessed items from the cache when the capacity limit is reached.
+- **LRU (Least Recently Used):** LRU is a caching strategy that evicts the least recently accessed items from the cache when the capacity limit is reached.
 
 #### Implementation: Detail the working of LRU caching and provide examples illustrating its advantages.
 
@@ -53,7 +52,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    MRU (Most Recently Used): MRU is a caching strategy that removes the most recently accessed items from the cache when it reaches its capacity limit.
+- **MRU (Most Recently Used):** MRU is a caching strategy that removes the most recently accessed items from the cache when it reaches its capacity limit.
 
 #### Implementation: Describe MRU caching and scenarios where it is beneficial.
 
@@ -63,7 +62,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    LFU (Least Frequently Used): LFU is a caching strategy that removes the least frequently accessed items from the cache when it is full.
+- **LFU (Least Frequently Used):** LFU is a caching strategy that removes the least frequently accessed items from the cache when it is full.
 
 #### Implementation: Explain the LFU strategy and its suitability in specific use cases.
 
@@ -73,7 +72,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    Purpose of Caching: Caching systems aim to improve application performance by reducing data retrieval latency and the load on primary data sources, ultimately enhancing user experience.
+- **Purpose of Caching:** Caching systems aim to improve application performance by reducing data retrieval latency and the load on primary data sources, ultimately enhancing user experience.
 
 #### Implementation: Elaborate on the benefits of caching systems and their contributions to application performance.
 
@@ -83,7 +82,7 @@ Caching is a crucial concept in computer science and software engineering that s
 
 #### Explanation:
 
-    Caching System Limits: Caching systems are constrained by factors such as cache size, cache expiration policies, and data consistency challenges.
+- **Caching System Limits:** Caching systems are constrained by factors such as cache size, cache expiration policies, and data consistency challenges.
 
 #### Implementation: Discuss the limitations of caching systems and strategies to mitigate them.
 
