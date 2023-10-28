@@ -12,6 +12,12 @@ from typing import List, Dict, Tuple
 
 
 class Server:
+    """
+    Server class for paginating a database of popular baby names.
+    This class provides methods to retrieve data and hypermedia information
+    for a specified page and page size.
+    """
+
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
