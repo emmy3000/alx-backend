@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ _('Current Time') }}</title>
+</head>
+<body>
+    <h1>
+        {% if g.user %}
+            {{ _('The current time is %(current_time)s.', current_time=current_time) }}
+        {% else %}
+            {{ _('You are not logged in.') }}
+        {% endif %}
+    </h1>
+</body>
+</html>
