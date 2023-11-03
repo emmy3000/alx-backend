@@ -5,7 +5,7 @@ A Flask app with Babel i18n configuration.
 from flask import Flask, render_template
 from flask_babel import Babel
 
-app = Flask(__name)
+app = Flask(__name__)
 babel = Babel(app)
 
 
@@ -24,11 +24,10 @@ class Config:
 babel.init_app(app)
 app.config.from_object(Config)
 app.url_map.strict_slashes = False
-babel = Babel(app)
 
 
 @app.route('/')
-def index():
+def home():
     """
     Render the home page with Babel-supported internationalization.
 
