@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ g.lang }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ _('Welcome') }}</title>
+</head>
+<body>
+    <h1>
+        {% if g.user %}
+            {{ _('You are logged in as %(username)s.', username=g.user.name) }}
+        {% else %}
+            {{ _('You are not logged in.') }}
+        {% endif %}
+    </h1>
+</body>
+</html>
