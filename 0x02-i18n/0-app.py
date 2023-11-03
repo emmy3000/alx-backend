@@ -3,7 +3,7 @@
 from flask import Flask, render_template
 
 # Create a Flask app instance
-app = Flask(__name)
+app = Flask(__name__)
 
 # Make trailing slashes in URLs optional
 app.url_map.strict_slashes = False
