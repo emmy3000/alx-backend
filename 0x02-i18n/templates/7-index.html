@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internationalization and User Preferences</title>
+</head>
+<body>
+    <h1>
+        {% if user %}
+            {% if user['locale'] == 'fr' %}
+                Bienvenue, {{ user['name'] }}!
+            {% else %}
+                Welcome, {{ user['name'] }}!
+            {% endif %}
+        {% else %}
+            {% if g.locale == 'fr' %}
+                Vous n'êtes pas connecté.
+            {% else %}
+                You are not logged in.
+            {% endif %}
+        {% endif %}
+    </h1>
+</body>
+</html>
