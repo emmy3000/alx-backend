@@ -137,13 +137,13 @@ $ npm install
 
 ---
 
-### Task 0:  Install a redis instance
+###                                      Task 0:  Install a redis instance
 
 To ensure seamless integration of Redis with the `0x03 Queuing System in JS` project, we need to follow a series of steps to download, extract, configure Redis, set up a key-value pair, verify its value, and finally copy the Redis dump file (`dump.rdb`) into our project directory.
 
 ---
 
-#### I. Download, Extract, and Compile Redis
+#### (I) Download, Extract, and Compile Redis
 
 - These commands download the Redis source, extract it, and compile it:
 
@@ -154,7 +154,7 @@ $ cd redis-6.0.10
 $ make
 ```
 
-#### II. Start Redis Server
+#### (II) Start Redis Server
 
 - Launch the Redis server in the background:
 
@@ -162,7 +162,7 @@ $ make
 $ src/redis-server &
 ```
 
-#### III. Check Redis Server's Current Status
+#### (III) Check Redis Server's Current Status
 
 - Execute the following command to confirm that the Redis server is running:
 
@@ -171,7 +171,7 @@ $ src/redis-server &
 $ src/redis-cli ping
 ```
 
-#### IV. Set A Key-Value Pair
+#### (IV) Set A Key-Value Pair
 
 - This sets the value "School" for the key "Holberton":
 
@@ -179,7 +179,7 @@ $ src/redis-cli ping
 $ src/redis-cli set Holberton School
 ```
 
-#### V. Verify The Key-Value Pair's Existence
+#### (V) Verify The Key-Value Pair's Existence
 
 - This command should return "School" proving to be value assigned to the key name "Holberton:
 
@@ -187,7 +187,7 @@ $ src/redis-cli set Holberton School
 $ src/redis-cli get Holberton
 ```
 
-#### VI. Trigger A Save Operation In Redis
+#### (VI) Trigger A Save Operation In Redis
 
 - After populating the database with some data, such as the simple key-value pair set up previously, proceed to save it in the database to ensure data persistence:
 
@@ -195,7 +195,7 @@ $ src/redis-cli get Holberton
 $ src/redis-cli save
 ```
 
-#### VII. Shutdown Redis Server
+#### (VII) Shutdown Redis Server
 
 - Find the process ID of the Redis server and terminate its background process:
 
@@ -204,7 +204,7 @@ $ ps aux | grep redis-server
 $ kill -9 [PID_OF_Redis_Server]
 ```
 
-#### VIII. Confirm Redis Dump File's Existence
+#### (VIII) Confirm Redis Dump File's Existence
 
 - After following the previous instructions, verify the presence of the `dump.rdb` file in the `redis-6.0.10/` directory:
 
@@ -212,7 +212,7 @@ $ kill -9 [PID_OF_Redis_Server]
 $ ls -al redis-6.0.10/dump.rdb
 ```
 
-#### IX. Copy Redis Dump File's Instance Into The Project's Root Directory
+#### (IX) Copy Redis Dump File's Instance Into The Project's Root Directory
 
 - Copy the `dump.rdb` file from `redis-6.0.10/` into the root directory of the `0x03-queuing_system_in_js/` project:
 
@@ -220,13 +220,27 @@ $ ls -al redis-6.0.10/dump.rdb
 $ cp redis-6.0.10/dump.rdb ~/alx-backend/0x03-queuing_system_in_js/
 ```
 
-#### X. Switch Back To The Project's Root Directory
+#### (X) Switch Back To The Project's Root Directory
 
-- Navigate back to the `0x03-queuing_system_in_js/` working directory and document the implemented solutions in detail in the `README.md` file. Save the changes and push them to the project's remote repository, including the `dump.rdb` file:
+- Navigate back to the `0x03-queuing_system_in_js/` working directory and document the implemented solutions in detail in the README.md file. Save the changes and push them to the project's remote repository:
 
 ```bash
-$ git add README.md dump.rdb
-$ git commit -m "Initial commit of the Redis database dump file and updated README documentation
+$ git add README.md
+$ git commit -m "doc [Task 0]: Update README with detailed instructions for installing a Redis instance"
+$ git push origin master
+```
+
+#### (XI) Secure Redis Dump File Data
+
+- To prevent highly sensitive data contained in the `dump.rdb` file from being accidentally pushed to a remote repository and compromised, take the following steps to exclude the database filename from version control:
+
+```bash
+# Save Redis dump file name in .gitignore.
+$ echo "dump.rdb" >> .gitignore
+
+# Stage, commit, and push the `.gitignore` file to the remote repository.
+$ git add .gitignore
+$ git commit -m "Exclude 'dump.rdb' from version control"
 $ git push origin master
 ```
 
