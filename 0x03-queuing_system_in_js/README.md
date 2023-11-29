@@ -51,14 +51,14 @@ Follow these steps to get the project up and running on your local machine:
 1. Clone the repository:
 
 ```bash
-$ git clone https://github.com/emmy3000/alx-backend
-$ cd alx-backend
+git clone https://github.com/emmy3000/alx-backend
+cd alx-backend
 ```
 
 2. Navigate into the directory specific to the project's task challenges:
 
 ```bash
-$ cd 0x03-queuing_system_in_js
+cd 0x03-queuing_system_in_js
 ```
 
 3. Define a base configuration file named `package.json` responsible for covering essential aspects such as project metadata (name, version, author, license), custom scripts for tasks (linting, testing, development), project dependencies, and development tools:
@@ -128,7 +128,7 @@ $ cd 0x03-queuing_system_in_js
 5. Install all the project's dependencies defined explicitly the `package.json` configuration file:
 
 ```shell
-$ npm install
+npm install
 ```
 
 6. Once you've meticulously set up the project's development environment according to the provided instructions, take on the challenge of resolving all the tasks. Happy coding!
@@ -148,10 +148,10 @@ To ensure seamless integration of Redis with the `0x03 Queuing System in JS` pro
 - These commands download the Redis source, extract it, and compile it:
 
 ```bash
-$ wget http://download.redis.io/releases/redis-6.0.10.tar.gz
-$ tar xzf redis-6.0.10.tar.gz
-$ cd redis-6.0.10
-$ make
+wget http://download.redis.io/releases/redis-6.0.10.tar.gz
+tar xzf redis-6.0.10.tar.gz
+cd redis-6.0.10
+make
 ```
 
 #### (II) Start Redis Server
@@ -159,7 +159,7 @@ $ make
 - Launch the Redis server in the background:
 
 ```bash
-$ src/redis-server &
+src/redis-server &
 ```
 
 #### (III) Check Redis Server's Current Status
@@ -168,7 +168,7 @@ $ src/redis-server &
 
 ```bash
 # Upon successful execution, the server responds with the string "PONG," indicating that it is running.
-$ src/redis-cli ping
+src/redis-cli ping
 ```
 
 #### (IV) Set A Key-Value Pair
@@ -176,7 +176,7 @@ $ src/redis-cli ping
 - This sets the value "School" for the key "Holberton":
 
 ```bash
-$ src/redis-cli set Holberton School
+src/redis-cli set Holberton School
 ```
 
 #### (V) Verify The Key-Value Pair's Existence
@@ -184,7 +184,7 @@ $ src/redis-cli set Holberton School
 - This command should return "School" proving to be value assigned to the key name "Holberton:
 
 ```bash
-$ src/redis-cli get Holberton
+src/redis-cli get Holberton
 ```
 
 #### (VI) Trigger A Save Operation In Redis
@@ -192,7 +192,7 @@ $ src/redis-cli get Holberton
 - After populating the database with some data, such as the simple key-value pair set up previously, proceed to save it in the database to ensure data persistence:
 
 ```bash
-$ src/redis-cli save
+src/redis-cli save
 ```
 
 #### (VII) Shutdown Redis Server
@@ -200,8 +200,8 @@ $ src/redis-cli save
 - Find the process ID of the Redis server and terminate its background process:
 
 ```bash
-$ ps aux | grep redis-server
-$ kill -9 [PID_OF_Redis_Server]
+ps aux | grep redis-server
+kill -9 [PID_OF_Redis_Server]
 ```
 
 #### (VIII) Confirm Redis Dump File's Existence
@@ -209,7 +209,7 @@ $ kill -9 [PID_OF_Redis_Server]
 - After following the previous instructions, verify the presence of the `dump.rdb` file in the `redis-6.0.10/` directory:
 
 ```bash
-$ ls -al redis-6.0.10/dump.rdb
+ls -al redis-6.0.10/dump.rdb
 ```
 
 #### (IX) Copy Redis Dump File's Instance Into The Project's Root Directory
@@ -217,7 +217,7 @@ $ ls -al redis-6.0.10/dump.rdb
 - Copy the `dump.rdb` file from `redis-6.0.10/` into the root directory of the `0x03-queuing_system_in_js/` project:
 
 ```bash
-$ cp redis-6.0.10/dump.rdb ~/alx-backend/0x03-queuing_system_in_js/
+cp redis-6.0.10/dump.rdb ~/alx-backend/0x03-queuing_system_in_js/
 ```
 
 #### (X) Switch Back To The Project's Root Directory
@@ -225,9 +225,9 @@ $ cp redis-6.0.10/dump.rdb ~/alx-backend/0x03-queuing_system_in_js/
 - Navigate back to the `0x03-queuing_system_in_js/` working directory and document the implemented solutions in detail in the README.md file. Save the changes and push them to the project's remote repository:
 
 ```bash
-$ git add README.md
-$ git commit -m "doc [Task 0]: Update README with detailed instructions for installing a Redis instance"
-$ git push origin master
+git add README.md
+git commit -m "doc [Task 0]: Update README with detailed instructions for installing a Redis instance"
+git push origin master
 ```
 
 #### (XI) Secure Redis Dump File Data
@@ -236,12 +236,12 @@ $ git push origin master
 
 ```bash
 # Save Redis dump file name in .gitignore.
-$ echo "dump.rdb" >> .gitignore
+echo "dump.rdb" >> .gitignore
 
 # Stage, commit, and push the `.gitignore` file to the remote repository.
-$ git add .gitignore
-$ git commit -m "Exclude 'dump.rdb' from version control"
-$ git push origin master
+git add .gitignore
+git commit -m "Exclude 'dump.rdb' from version control"
+git push origin master
 ```
 
 ## Author
