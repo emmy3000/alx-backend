@@ -133,6 +133,103 @@ $ npm install
 
 6. Once you've meticulously set up the project's development environment according to the provided instructions, take on the challenge of resolving all the tasks. Happy coding!
 
+## Project's Task Challenge Resolution
+
+---
+
+### Task 0:  Install a redis instance
+
+To ensure seamless integration of Redis with the `0x03 Queuing System in JS` project, we need to follow a series of steps to download, extract, configure Redis, set up a key-value pair, verify its value, and finally copy the Redis dump file (`dump.rdb`) into our project directory.
+
+---
+
+#### I. Download, Extract, and Compile Redis
+
+- These commands download the Redis source, extract it, and compile it:
+
+```bash
+$ wget http://download.redis.io/releases/redis-6.0.10.tar.gz
+$ tar xzf redis-6.0.10.tar.gz
+$ cd redis-6.0.10
+$ make
+```
+
+#### II. Start Redis Server
+
+- Launch the Redis server in the background:
+
+```bash
+$ src/redis-server &
+```
+
+#### III. Check Redis Server's Current Status
+
+- Execute the following command to confirm that the Redis server is running:
+
+```bash
+# Upon successful execution, the server responds with the string "PONG," indicating that it is running.
+$ src/redis-cli ping
+```
+
+#### IV. Set A Key-Value Pair
+
+- This sets the value "School" for the key "Holberton":
+
+```bash
+$ src/redis-cli set Holberton School
+```
+
+#### V. Verify The Key-Value Pair's Existence
+
+- This command should return "School" proving to be value assigned to the key name "Holberton:
+
+```bash
+$ src/redis-cli get Holberton
+```
+
+#### VI. Trigger A Save Operation In Redis
+
+- After populating the database with some data, such as the simple key-value pair set up previously, proceed to save it in the database to ensure data persistence:
+
+```bash
+$ src/redis-cli save
+```
+
+#### VII. Shutdown Redis Server
+
+- Find the process ID of the Redis server and terminate its background process:
+
+```bash
+$ ps aux | grep redis-server
+$ kill -9 [PID_OF_Redis_Server]
+```
+
+#### VIII. Confirm Redis Dump File's Existence
+
+- After following the previous instructions, verify the presence of the `dump.rdb` file in the `redis-6.0.10/` directory:
+
+```bash
+$ ls -al redis-6.0.10/dump.rdb
+```
+
+#### IX. Copy Redis Dump File's Instance Into The Project's Root Directory
+
+- Copy the `dump.rdb` file from `redis-6.0.10/` into the root directory of the `0x03-queuing_system_in_js/` project:
+
+```bash
+$ cp redis-6.0.10/dump.rdb ~/alx-backend/0x03-queuing_system_in_js/
+```
+
+#### X. Switch Back To The Project's Root Directory
+
+- Navigate back to the `0x03-queuing_system_in_js/` working directory and document the implemented solutions in detail in the `README.md` file. Save the changes and push them to the project's remote repository, including the `dump.rdb` file:
+
+```bash
+$ git add README.md dump.rdb
+$ git commit -m "Initial commit of the Redis database dump file and updated README documentation
+$ git push origin master
+```
+
 ## Author
 
 Emeka Emodi
