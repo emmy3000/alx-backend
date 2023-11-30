@@ -528,6 +528,88 @@ Reply: 1
 
     - This information is valuable for developers, helping them understand the outcome of each operation and facilitating troubleshooting or debugging processes.
 
+---
+
+### Task 5: Node Redis Client Publisher and Subscriber
+
+This task involves creating two Node.js scripts, `5-subscriber.js` and `5-publisher.js`, which act as a subscriber and a publisher for a Redis channel, respectively. The subscriber listens for messages on a specific channel and logs them to the console, while the publisher sends messages to the same channel after a specified time.
+
+---
+
+#### (I) Implementation
+
+  - `5-subscriber.js`:
+
+  This script performs the following actions:
+
+    - Creates a Redis subscriber client using the `createClient` function from the 'redis' package.
+
+    - Logs the connection status or error messages to the console.
+
+    - Subscribes to the "holberton school channel" using the `subscribe` method.
+
+    - Listens for messages on the channel and logs them to the console.
+
+    - Unsubscribes and quits when a message with content "KILL_SERVER" is received.
+
+  - `5-publisher.js`:
+
+  This script performs the following actions:
+
+    - Creates a Redis publisher client using the `createClient` function from the 'redis' package.
+
+    - Logs the connection status or error messages to the console.
+
+    - Defines a function `publishMessage` that publishes a message to the "holberton school channel" after a specified time.
+
+    - Calls `publishMessage` for different messages with corresponding time delays.
+
+#### (II) Run The Script Defined Implemented The Task
+
+- To run the scripts, open two terminals and execute the following commands:
+
+   - Terminal 1 (Subscriber):
+
+   This terminal logs the connection status, received messages, and then cleans up on exit:
+
+  ```bash
+  npm run dev 5-subscriber.js
+  ```
+
+   - Terminal 2 (Publisher):
+
+   This terminal logs the connection status, announces the intent to send messages, and then sends the messages:
+
+  ```bash
+  npm run dev 5-publisher.js
+  ```
+
+#### (III) Expected Output
+
+   - Terminal 1 Output (Subscriber):
+
+   ```bash
+   Redis client connected to the server
+   Holberton Student #1 starts course
+   Holberton Student #2 starts course
+   KILL_SERVER
+   [nodemon] clean exit - waiting for changes before restart
+   ```
+
+   - Terminal 2 Output (Publisher):
+
+   ```bash
+   Redis client connected to the server
+   About to send Holberton Student #1 starts course
+   About to send Holberton Student #2 starts course
+   About to send KILL_SERVER
+   About to send Holberton Student #3 starts course
+   ```
+
+#### (IV) Explanation
+
+- The output demonstrates the interaction between the subscriber and publisher, showcasing successful message delivery and the ability to stop the subscriber with "KILL_SERVER".
+
 ## Author
 
 Emeka Emodi
