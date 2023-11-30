@@ -536,7 +536,7 @@ This task involves creating two Node.js scripts, `5-subscriber.js` and `5-publis
 
 ---
 
-#### (I) Implementation
+#### (I) Steps and Implementation
 
   - `5-subscriber.js`:
 
@@ -692,9 +692,102 @@ Notification job created: 1
 
 - To suppress circular dependency warnings and ensure cleaner output, it's essential to use the `--no-warnings` flag when executing the script with `nodemon`. For example:
 
-  ```bash
-  npm run dev 6-job_creator.js
-  ```
+```bash
+npm run dev 6-job_creator.js
+```
+
+---
+
+### Task 7. Create the Job processor
+
+In this task, we create a job processor using Kue, a priority job queue for Node.js. The processor listens for new jobs on the `push_notification_code` queue and executes a function to send notifications based on the job data.
+
+---
+
+#### (I) Steps and Implementations
+
+1. **Import Kue Library:**
+
+   - The script starts by importing the Kue library using:
+   
+     ```javascript
+     import kue from 'kue';
+     ```
+
+2. **Create Kue Queue:**
+
+    - A Kue queue named `push_notification_code` is created using:
+    
+      ```javascript
+      const queue = kue.createQueue();
+      ```
+
+3. **Define a Notification Function:**
+
+    - Create a function named `sendNotification` that takes `phoneNumber` and `message` as arguments and logs a notification message to the console:
+
+    ```javascript
+    const sendNotification = (phoneNumber, message) => {
+    console.log(`Sending notification to ${phoneNumber}, with message: ${message}`);
+    };
+    ```
+
+4. **Process Jobs from the Queue:**
+
+    - Write the queue process that listens for new jobs on `push_notification_code`. For each new job, it calls the `sendNotification` function with the phone number and message contained within the job data. Finally, mark the job as completed. 
+
+    ```javascript
+    queue.process('push_notification_code', (job, done) => {
+    sendNotification(job.data.phoneNumber, job.data.message);
+    done();
+    });
+    ```
+
+5. **Output Ready Message:**
+
+    - Log a message to the console indicating that the job processor is ready:
+      
+      ```javascript
+      console.log('Job processor is ready');
+      ```
+
+#### (II) Running the Code
+
+Execute the following commands in separate terminals:
+
+  - Terminal 1 (Job Creator):
+
+    ```bash
+    npm run dev 6-job_creator.js
+    ```
+
+  - Terminal 2 (Job Processor):
+
+    ```bash
+    npm run dev 6-job_processor.js
+    ```
+  
+  This will create a new job in Terminal 1, and the job processor in Terminal 2 will process it, sending notifications as specified.
+
+#### (III) Expected Output
+
+In Terminal 2, you should see log messages indicating the processor is ready and notifications being sent to the specified phone number with the associated message. In Terminal 1, you'll observe the creation of a new job and its completion.
+
+```bash
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec 'babel-node --no-warnings --presets @babel/preset-env' -- 6-job_processor.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 6-job_processor.js`
+Job processor is ready
+Sending notification to 1234567890, with message: Hello, this is a notification!
+^C%
+```
+
+**Note**: Ensure a Redis server is running for Kue storage, and two Node processes are used to run each script simultaneously.
 
 ## Author
 
