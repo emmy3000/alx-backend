@@ -226,7 +226,7 @@ cp redis-6.0.10/dump.rdb ~/alx-backend/0x03-queuing_system_in_js/
 
 ```bash
 git add README.md
-git commit -m "doc [Task 0]: Update README with detailed instructions for installing a Redis instance"
+git commit -m "doc[Task 0]: Update README with detailed instructions for installing a Redis instance"
 git push origin master
 ```
 
@@ -242,6 +242,89 @@ echo "dump.rdb" >> .gitignore
 git add .gitignore
 git commit -m "Exclude 'dump.rdb' from version control"
 git push origin master
+```
+
+---
+
+## Task 1. Node Redis Client
+
+---
+
+### (I) Install A Redis Dependency
+
+- Install the `redis` dependency using the following command:
+
+```bash
+npm install redis
+```
+
+#### (II) Script Requirements
+
+- Using Babel and ES6, write a script named 0-redis_client.js.
+
+    - Connect to the Redis server running on your machine.
+
+    - Log to the console:
+
+        - `"Redis client connected to the server"` when the connection to Redis works correctly.
+
+        - `"Redis client not connected to the server: ERROR_MESSAGE"` when the connection to Redis fails.
+
+#### (III) Additional Requirements
+
+- Import the library using the `import` keyword following the ES6 syntax.
+
+#### (IV) Execution
+
+- Run the script using the following command:
+
+```bash
+# source code's execution of the Redis client located in the root directory of the project
+npm run dev 0-redis_client.js
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec babel-node --presets @babel/preset-env 0-redis_client.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 0-redis_client.js`
+Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+^C
+```
+
+- Execute Redis server in the background and discard its output:
+
+```bash
+./src/redis-server > /dev/null 2>&1 &
+[1] 7604
+```
+
+- Run the script again:
+
+```bash
+npm run dev 0-redis_client.js
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec babel-node --presets @babel/preset-env 0-redis_client.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 0-redis_client.js`
+Redis client connected to the server
+^C
+```
+
+- Lists all running processes and search for the process related to redis-server:
+
+```bash
+ps aux | grep redis-server
+mex               7681   0.0  0.0 34155080    652 s000  U+   12:59AM   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox redis-server
+mex               7604   0.0  0.0 34164068   2412 s000  SN   12:59AM   0:00.03 ./src/redis-server *:6379
 ```
 
 ## Author
