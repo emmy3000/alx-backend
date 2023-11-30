@@ -789,6 +789,132 @@ Sending notification to 1234567890, with message: Hello, this is a notification!
 
 **Note**: Ensure a Redis server is running for Kue storage, and two Node processes are used to run each script simultaneously.
 
+---
+
+### Task 8. Track progress and errors with Kue: Create the Job creator
+
+In the file named `7-job_creator.js`, the goal is to create a Kue queue (`push_notification_code_2`) and populate it with jobs based on the data provided in an array named `jobs`. Each job corresponds to a notification with specific phone numbers and messages. The script is designed to handle job creation, completion, failure, and progress tracking.
+
+---
+
+#### (I) Steps and Implementations
+
+1. **Array of Jobs:**
+
+   - An array named `jobs` is defined, containing objects with phone numbers and messages for notifications:
+
+   ```javascript
+   const jobs = [
+    // ... job objects
+   ];
+   ```
+
+2. **Kue Queue Creation:**
+
+   - A Kue queue named `push_notification_code_2` is created:
+
+    ```javascript
+    const queue = kue.createQueue();
+    ```
+
+3. **Job Creation Loop:**
+
+   - A loop iterates through the array of jobs, creating a new job for each object in the array:
+
+     ```javascript
+     {
+       jobs.forEach((jobData, index) => {
+          const job = queue.create('push_notification_code_2', jobData);
+          // ... event handlers and job save logic
+        });
+     }
+     ```
+
+4. **Event Handlers:**
+
+   - Event handlers are defined for successful job completion, job failure, and job progress.
+
+    - Successful Job Completion:
+
+    ```javascript
+    job.on('complete', () => {
+      console.log(`Notification job ${job.id} completed`);
+    });
+    ```
+
+    - Job Failure:
+
+    ```javascript
+    job.on('failed', (errorMessage) => {
+      console.log(`Notification job ${job.id} failed: ${errorMessage}`);
+    });
+    ```
+
+    - Job Progress:
+
+    ```javascript
+    job.on('progress', (progress) => {
+      console.log(`Notification job ${job.id} ${progress}% complete`);
+    });
+    ```
+
+5. **Job Save:**
+
+   - The job is saved to the queue, and corresponding messages are logged:
+
+    ```javascript
+    job.save((err) => {
+      if (!err) {
+        console.log(`Notification job created: ${job.id}`);
+      }
+    });
+    ```
+
+6. **Kue UI:**
+
+   - The Kue UI is started on port 3000:
+     
+      ```javascript
+      kue.app.listen(3000);
+      console.log('Kue UI started on port 3000');
+      ```
+
+#### (II) Running the Script
+
+Execute the script using:
+
+```bash
+npm run dev 7-job_creator.js
+```
+
+#### (III) Expected Output
+
+The script should log messages indicating the creation, completion, failure, and progress of each notification job:
+
+```bash
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec 'babel-node --no-warnings --presets @babel/preset-env' -- 7-job_creator.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 7-job_creator.js`
+Kue UI started on port 3000
+Notification job created: 5
+Notification job created: 6
+Notification job created: 7
+Notification job created: 8
+Notification job created: 9
+Notification job created: 10
+Notification job created: 11
+Notification job created: 12
+Notification job created: 13
+Notification job created: 14
+Notification job created: 15
+^C
+```
+
 ## Author
 
 Emeka Emodi
