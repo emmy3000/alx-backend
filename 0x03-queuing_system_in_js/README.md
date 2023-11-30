@@ -115,7 +115,7 @@ cd 0x03-queuing_system_in_js
 }
 ```
 
-4. Define a base Babel configuration that provides the functionality responsible for enabling compatibility with different ECMAScript (JavaScript) versions:
+4. Define a base Babel configuration named `.babelrc` that provides the functionality responsible for enabling compatibility with different ECMAScript (JavaScript) versions:
 
 ```JSON
 {
@@ -125,7 +125,7 @@ cd 0x03-queuing_system_in_js
 }
 ```
 
-5. Install all the project's dependencies defined explicitly the `package.json` configuration file:
+5. Install all the project's dependencies defined explicitly in the `package.json` configuration file:
 
 ```shell
 npm install
