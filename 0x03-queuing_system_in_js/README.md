@@ -137,7 +137,7 @@ npm install
 
 ---
 
-###                                      Task 0:  Install a redis instance
+### Task 0:  Install a redis instance
 
 To ensure seamless integration of Redis with the `0x03 Queuing System in JS` project, we need to follow a series of steps to download, extract, configure Redis, set up a key-value pair, verify its value, and finally copy the Redis dump file (`dump.rdb`) into our project directory.
 
