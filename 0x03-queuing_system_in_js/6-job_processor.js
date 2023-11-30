@@ -15,18 +15,20 @@
   Terminal 1: bob@dylan:~$ npm run dev 6-job_creator.js
 */
 
-import kue from 'kue';
+import kue from "kue";
 
-// Create a Kue queue named push_notification_code/
+// Create a Kue queue named push_notification_code
 const queue = kue.createQueue();
 
 // Function to send a notification
 const sendNotification = (phoneNumber, message) => {
-  console.log(`Sending notification to ${phoneNumber}, with message: ${message}`);
+  console.log(
+    `Sending notification to ${phoneNumber}, with message: ${message}`
+  );
 };
 
 // Process jobs from the push_notification_code queue
-queue.process('push_notification_code', (job, done) => {
+queue.process("push_notification_code", (job, done) => {
   // Call the sendNotification function with job data
   sendNotification(job.data.phoneNumber, job.data.message);
   // Mark the job as completed
@@ -34,4 +36,4 @@ queue.process('push_notification_code', (job, done) => {
 });
 
 // Output message when the processor is ready
-console.log('Job processor is ready');
+console.log("Job processor is ready");
