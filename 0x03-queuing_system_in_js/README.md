@@ -825,7 +825,7 @@ In the file named `7-job_creator.js`, the goal is to create a Kue queue (`push_n
      {
        jobs.forEach((jobData, index) => {
           const job = queue.create('push_notification_code_2', jobData);
-          // ... event handlers and job save logic
+          // ... event handlers and job save logi
         });
      }
      ```
