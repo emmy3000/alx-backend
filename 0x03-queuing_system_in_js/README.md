@@ -390,6 +390,52 @@ Reply: OK
     
     - `displaySchoolValue('HolbertonSanFrancisco')`: Retrieves and logs the value for the key 'HolbertonSanFrancisco'.
 
+---
+
+### Task 3. Node Redis client and async operations
+
+The script `2-redis_op_async.js` leverages the `redis` package to establish a connection with a Redis server. It extends the functionality of the previous script (`1-redis_op.js`) by introducing two additional functions: `setNewSchool` and `displaySchoolValue`. These functions demonstrate the power of asynchronous operations using `async/await` and `promisify` from the `util` module, enhancing readability and control flow.
+
+---
+
+#### (I) Script Requirements
+
+- Using Babel and ES6, write a script named `2-redis_op_async.js`.
+
+    - Import the `redis` client library.
+
+    - Create a `Redis` client.
+
+    - Subscribe to the channel `holberton school channel` and display the message received.
+
+    - When a message with the pattern `holberton school channel` is received, call the function `displaySchoolValue` to display the value received.
+
+    - When a message with the pattern `holberton school channel` is received, call the function `setNewSchool` to set the value `Holberton` as value for the key `School`.
+
+#### (II) Run The Script Defined Implemented The Task
+
+- The script utilizes nodemon and Babel to execute the JavaScript file. It connects to a Redis server and performs the specified operations:
+
+```bash
+npm run dev 2-redis_op_async.js
+```
+
+#### (III) Project Structure
+
+- The project structure is organized as follows:
+
+  - `1-redis_op.js`: Original script introducing basic Redis functionality.
+
+  - `2-redis_op_async.js`: Updated script introducing asynchronous operations and enhanced Redis functionalities.
+
+#### (IV) Functions
+
+- The implementation not only showcases practical Redis usage but also demonstrates best practices in asynchronous programming for Node.js.:
+
+  - `setNewSchool(schoolName, value)`: Accepts two arguments, `schoolName` and `value`, and sets the provided value for the specified key (`schoolName`) in Redis.
+
+  - `displaySchoolValue(schoolName)`: A function modified to leverage ES6 `async/await`. It retrieves and displays the value associated with a given `schoolName` from the Redis server.
+
 ## Author
 
 Emeka Emodi
