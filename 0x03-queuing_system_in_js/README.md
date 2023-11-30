@@ -361,7 +361,7 @@ npm run dev 1-redis_op.js
 
 #### (III) Expected Output
 
-- The expected output includes confirmation messages and the Redis server's responses:
+  - The expected output includes confirmation messages and the Redis server's responses:
 
 ```bash
 [nodemon] 3.0.1
@@ -435,6 +435,98 @@ npm run dev 2-redis_op_async.js
   - `setNewSchool(schoolName, value)`: Accepts two arguments, `schoolName` and `value`, and sets the provided value for the specified key (`schoolName`) in Redis.
 
   - `displaySchoolValue(schoolName)`: A function modified to leverage ES6 `async/await`. It retrieves and displays the value associated with a given `schoolName` from the Redis server.
+
+---
+
+### Task 4. Node Redis client and advanced operations
+
+This task involves using the Redis client in Node.js to store a hash value with specific key-value pairs using hset and displaying the object stored in Redis using `hgetall`.
+
+---
+
+#### (I) Script Requirements
+
+- Using Babel and ES6, write a script named `4-redis_advanced_op.js`.
+
+    - Import the `redis` client library.
+
+    - Create a `Redis` client.
+
+    - Define a function named `main` that will execute all the following functions:
+
+        - `client.on('connect', function)`: Log to the console the string `Redis client connected to the server` when the connection to Redis works correctly.
+
+        - `client.on('error', function)`: Log to the console the string `Redis client not connected to the server: ERROR_MESSAGE` when the connection to Redis fails.
+
+        - `client.hset('HolbertonSchools', 'Portland', '50', function)`: Set the value `50` for the key `Portland` in the hash `HolbertonSchools`.
+
+        - `client.hset('HolbertonSchools', 'Seattle', '80', function)`: Set the value `80` for the key `Seattle` in the hash `HolbertonSchools`.
+
+        - `client.hset('HolbertonSchools', 'New York', '20', function)`: Set the value `20` for the key `New York` in the hash `HolbertonSchools`.
+
+        - `client.hset('HolbertonSchools', 'Bogota', '20', function)`: Set the value `20` for the key `Bogota` in the hash `HolbertonSchools`.
+
+        - `client.hset('HolbertonSchools', 'Cali', '40', function)`: Set the value `40` for the key `Cali` in the hash `HolbertonSchools`.
+
+        - `client.hset('HolbertonSchools', 'Paris', '2', function)`: Set the value `2` for the key `Paris` in the hash `HolbertonSchools`.
+
+        - `client.hgetall('HolbertonSchools', function)`: Display all the keys and values stored in the hash `HolbertonSchools`.
+
+#### (II) Run The Script Defined Implemented The Task
+
+- The script utilizes nodemon and Babel to execute the JavaScript file. It connects to a Redis server and performs the specified operations:
+
+```bash
+npm run dev 4-redis_advanced_op.js
+```
+
+#### (III) Expected Output
+
+- The expected output includes confirmation messages and the Redis server's responses:
+
+```bash
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec babel-node --presets @babel/preset-env 4-redis_advanced_op.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 4-redis_advanced_op.js`
+Reply: 1
+Reply: 1
+Reply: 1
+Reply: 1
+Reply: 1
+Reply: 1
+{
+  Portland: '50',
+  Seattle: '80',
+  'New York': '20',
+  Bogota: '20',
+  Cali: '40',
+  Paris: '2'
+}
+^C
+```
+
+#### (IV) Explanation
+
+  - Redis Client Connection:
+        
+    - The script connects to the Redis server, and a message is logged to the console upon successful connection.
+  
+  - Modularity:
+
+    - The `createHash` and `displayHash` functions contribute to the script's modularity. This design choice enhances efficiency and maintainability by isolating specific functionalities into separate, reusable functions.
+
+  - Reply Values:
+
+    - *Value of 1*: Signifies the creation of a new field in the hash.
+
+    - *Value of 0*: Indicates an existing field was updated.
+
+    - This information is valuable for developers, helping them understand the outcome of each operation and facilitating troubleshooting or debugging processes.
 
 ## Author
 
