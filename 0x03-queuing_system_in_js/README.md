@@ -13,7 +13,7 @@ To get started with this project, it's essential to set up and run a Redis serve
 
 ```bash
 # Example command to start the Redis server
-$ redis-server
+./redis-server
 ```
 
 ### 2. Simple Operations with Redis Client
@@ -912,8 +912,108 @@ Notification job created: 12
 Notification job created: 13
 Notification job created: 14
 Notification job created: 15
-^C
+^C%
 ```
+
+---
+
+### Task 8. Track progress and errors with Kue: Create the Job creator
+
+In this task, we aim to create a job processor using Kue that tracks the progress of jobs and handles errors based on a predefined set of blacklisted phone numbers. The job processor will listen to a Kue queue, process jobs, and perform specific actions based on the job data.
+
+---
+
+#### (I) Steps and Implementations
+
+  - **Step 1: Blacklisted Phone Numbers**
+
+  Firstly, we create an array named `blacklistedNumbers` containing phone numbers that are blacklisted. In this case, the numbers *4153518780* and *4153518781* are added to the blacklist: 
+
+  ```javascript
+  const blacklistedNumbers = ['4153518780', '4153518781'];
+  ```
+
+  - **Step 2: sendNotification Function**
+
+  Next, we define a function named `sendNotification` that takes four arguments - `phoneNumber`, `message`, `job`, and `done`. This function is responsible for tracking job progress, checking if the phone number is blacklisted, logging progress, and completing the job:
+
+  ```javascript
+  const sendNotification = (phoneNumber, message, job, done) => {
+    job.progress(0); // Track the progress of the job
+
+    if (blacklistedNumbers.includes(phoneNumber)) {
+      // Fail the job if the phone number is blacklisted
+      return done(new Error(`Phone number ${phoneNumber} is blacklisted`));
+    }
+
+    job.progress(50); // Log progress to 50%
+    console.log(`Sending notification to ${phoneNumber}, with message: ${message}`);
+
+    done(); // Complete the job
+  };
+  ```
+
+  - **Step 3: Kue Queue Setup**
+
+  Create a Kue queue named `push_notification_code_2`:
+
+  ```javascript
+  const queue = kue.createQueue();
+  ```
+
+  - **Step 4: Queue Processing**
+
+  Process jobs from the `push_notification_code_2` queue, with a concurrency limit of 2:
+
+  ```javascript
+  queue.process('push_notification_code_2', 2, (job, done) => {
+    const { phoneNumber, message } = job.data; // Extract data from the job
+    sendNotification(phoneNumber, message, job, done); // Call sendNotification function
+  });
+  ```
+
+  - **Step 5: Terminal Output**
+
+  Executing the job creator script (`7-job_creator.js`) and job processor script (`7-job_processor.js`) simultaneously should produce the following output:
+
+    - Terminal 1 (Job Creator):
+
+      - Creates and logs notification jobs.
+
+    - Terminal 2 (Job Processor):
+
+      - Logs job processor readiness.
+
+      - Sends notifications to non-blacklisted numbers.
+
+      - Fails notifications for blacklisted numbers.
+
+      - Logs progress and completion for each job.
+
+#### (II) Expected Result
+
+Running the scripts simultaneously should demonstrate the job processor tracking progress, handling blacklisted numbers, and completing notifications for non-blacklisted numbers.
+
+```bash
+# Output on Terminal 1 (Job Creator)
+Notification job created: 16
+Notification job created: 17
+...
+
+# Output on Terminal 2 (Job Processor)
+Job processor is ready
+Sending notification to 4153518743, with message: This is the code 4321 to verify your account
+Sending notification to 4153538781, with message: This is the code 4562 to verify your account
+...
+Notification job 16 0% complete
+Notification job 16 failed: Phone number 4153518780 is blacklisted
+...
+```
+
+#### (III) Conclusion
+
+This implementation ensures efficient tracking of job progress, proper handling of blacklisted numbers, and successful notification processing for non-blacklisted numbers using Kue job queues.
+
 
 ## Author
 
