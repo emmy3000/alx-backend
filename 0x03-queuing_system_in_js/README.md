@@ -127,6 +127,8 @@ cd 0x03-queuing_system_in_js
 
 5. Install all the project's dependencies defined explicitly in the `package.json` configuration file:
 
+**Note:** *The configuration files, `package.json` and `.babelrc`, serve as the foundational settings for the project. As the development progresses and the project takes shape, these configuration files may undergo changes. It is crucial to keep them up-to-date with the latest modifications, reflecting decisions on project structure, schematics, and dynamically controlled dependency versions. This adaptability ensures alignment with evolving project requirements and enhances the overall maintainability of the codebase. Stay informed about updates and refer to the project documentation for any specific guidelines on configuration adjustments.* 
+
 ```shell
 npm install
 ```
