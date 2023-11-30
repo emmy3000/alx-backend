@@ -246,7 +246,9 @@ git push origin master
 
 ---
 
-## Task 1. Node Redis Client
+### Task 1. Node Redis Client
+
+This project extends the functionality of a Node.js Redis client implemented in `0-redis_client.js`. In the new script, `1-redis_op.js`, two additional functions have been added to perform basic operations with Redis: `setNewSchool` and `displaySchoolValue`. The former sets a value for a given key in Redis, while the latter retrieves and displays the value for a given key.
 
 ---
 
@@ -326,6 +328,67 @@ ps aux | grep redis-server
 mex               7681   0.0  0.0 34155080    652 s000  U+   12:59AM   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox redis-server
 mex               7604   0.0  0.0 34164068   2412 s000  SN   12:59AM   0:00.03 ./src/redis-server *:6379
 ```
+
+---
+
+### Task 2. Node Redis client and basic operations
+
+This project implements a Node.js script (`1-redis_op.js`) that serves as a Redis client and performs basic operations. The script connects to a Redis server and adds two functions: `setNewSchool` and `displaySchoolValue`. The former sets a value for a given key in Redis, and the latter displays the value for a given key.
+
+---
+
+#### (I) Script Requirements
+
+- Using Babel and ES6, write a script named `1-redis_op.js`.
+
+    - Import the `redis` client library.
+
+    - Create a `Redis` client.
+
+    - Subscribe to the channel `holberton school channel` and display the message received.
+
+    - When a message with the pattern `holberton school channel` is received, call the function `displaySchoolValue` to display the value received.
+
+    - When a message with the pattern `holberton school channel` is received, call the function `setNewSchool` to set the value `Holberton` as value for the key `School`.
+  
+#### (II) Run The Script Defined Implemented The Task
+
+- The script utilizes nodemon and Babel to execute the JavaScript file. It connects to a Redis server and performs the specified operations.
+
+```bash
+npm run dev 1-redis_op.js
+```
+
+#### (III) Expected Output
+
+- The expected output includes confirmation messages and the Redis server's responses:
+
+```bash
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --presets @babel/preset-env 1-redis_op.js`
+Redis client connected to the server
+School
+Reply: OK
+100
+^C
+```
+
+#### (IV) Explanation
+
+  - Redis Client Connection:
+        
+    - The script connects to the Redis server, and a message is logged to the console upon successful connection.
+
+  - Basic Operations:
+    
+    - `displaySchoolValue('Holberton')`: Retrieves and logs the value for the key 'Holberton'.
+    
+    - `setNewSchool('HolbertonSanFrancisco', '100')`: Sets the value '100' for the key 'HolbertonSanFrancisco'.
+    
+    - `displaySchoolValue('HolbertonSanFrancisco')`: Retrieves and logs the value for the key 'HolbertonSanFrancisco'.
 
 ## Author
 
