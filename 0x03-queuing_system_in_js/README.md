@@ -610,6 +610,92 @@ This task involves creating two Node.js scripts, `5-subscriber.js` and `5-publis
 
 - The output demonstrates the interaction between the subscriber and publisher, showcasing successful message delivery and the ability to stop the subscriber with "KILL_SERVER".
 
+---
+
+### Task 6. Create the Job creator
+
+This script, `6-job_creator.js`, is designed to create a job queue using the Kue library. It generates a job with predefined data and logs relevant messages based on the job's status.
+
+---
+
+#### (I) Steps and Implementations
+
+1. **Import Kue Library:**
+
+   - The script starts by importing the Kue library using `import kue from 'kue';`.
+
+2. **Create Kue Queue:**
+
+   - A Kue queue named `push_notification_code` is created using `const queue = kue.createQueue();`.
+
+3. **Define Job Data:**
+
+   - An object `jobData` is created containing job data with the format:
+
+     ```javascript
+     {
+       phoneNumber: '7085558733',
+       message: 'Hello, this is a notification!',
+     }
+     ```
+
+4. **Create Job:**
+
+   - A job is created using the `queue.create` method with the specified queue name and job data.
+
+5. **Event Handlers:**
+
+   - Event handlers are attached to the job:
+
+     - `job.on('complete', ...)`: Logs a message when the job is completed.
+
+     - `job.on('failed', ...)`: Logs a message when the job fails.
+
+6. **Save Job to Queue:**
+
+   - The job is saved to the queue using `job.save((err) => { ... });`.
+
+7. **Start Kue UI:**
+
+   - The Kue UI is started on port 3000 using `kue.app.listen(3000);`.
+
+#### (II) How to Run
+
+To execute the script, run the following command in the terminal:
+
+```bash
+npm run dev 6-job_creator.js
+```
+
+#### (III) Expected Output
+
+After executing the script, you should see output similar to the following:
+
+```bash
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec 'babel-node --no-warnings --presets @babel/preset-env' -- 6-job_creator.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 6-job_creator.js`
+Kue UI started on port 3000
+Notification job created: 1
+```
+
+#### (IV) Notes
+
+- Ensure that the required dependencies are installed using `npm install kue redis`.
+
+- Make sure a Redis server is running for Kue storage.
+
+- To suppress circular dependency warnings and ensure cleaner output, it's essential to use the `--no-warnings` flag when executing the script with `nodemon`. For example:
+
+  ```bash
+  npm run dev 6-job_creator.js
+  ```
+
 ## Author
 
 Emeka Emodi
