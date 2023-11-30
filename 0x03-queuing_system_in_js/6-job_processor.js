@@ -17,7 +17,7 @@
 
 import kue from 'kue';
 
-// Create a Kue queue named push_notification_code
+// Create a Kue queue named push_notification_code/
 const queue = kue.createQueue();
 
 // Function to send a notification
