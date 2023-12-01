@@ -1209,6 +1209,195 @@ Notification job created: 2
 
 These results confirm that the function handles different scenarios correctly and creates jobs in the Kue queue as expected.
 
+---
+
+### Task 12: In stock?
+
+The task involves creating an Express server that manages product reservations using Redis. The server exposes routes to retrieve the list of available products, view product details, and reserve products.
+
+---
+
+#### (I) Steps and Implementation
+
+1. **Step 1: Dependencies**
+
+- The following dependencies are imported:
+
+```javascript
+import express from 'express';
+import redis from 'redis';
+import { promisify } from 'util';
+```
+
+2. **Step 2: Data Setup**
+
+- An array named `listProducts` is created, containing information about various products, including their ID, name, price, and initial stock:
+
+```javascript
+const listProducts = [
+  { itemId: 1, itemName: 'Suitcase 250', price: 50, initialAvailableQuantity: 4 },
+  { itemId: 2, itemName: 'Suitcase 450', price: 100, initialAvailableQuantity: 10 },
+  { itemId: 3, itemName: 'Suitcase 650', price: 350, initialAvailableQuantity: 2 },
+  { itemId: 4, itemName: 'Suitcase 1050', price: 550, initialAvailableQuantity: 5 },
+];
+```
+
+3. **Step 3: Data Access**
+
+- A function named `getItemById` is implemented to retrieve a product by its ID from `listProducts`:
+
+```javascript
+const getItemById = (id) => listProducts.find((item) => item.itemId === id);
+```
+
+4. **Step 4:Express Server Setup**
+
+- An Express server is created to listen on port 1245:
+
+```javascript
+const port = 1245;
+
+// ...other code implementations
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+```
+
+5. **Step 5:Products Route**
+
+- A route `GET /list_products` is established to return the list of all available products in JSON format.
+
+```javascript
+app.get('/list_products', (req, res) => {
+  res.json(listProducts.map((product) => ({
+    itemId: product.itemId,
+    itemName: product.itemName,
+    price: product.price,
+    initialAvailableQuantity: product.initialAvailableQuantity,
+  })));
+});
+```
+
+6. **Step 6:Redis Setup**
+
+- A Redis client is created to connect to the Redis server.
+- Two Redis functions, `reserveStockById` and `getCurrentReservedStockById`, are implemented for managing stock reservations.
+
+```javascript
+const client = redis.createClient();
+const getAsync = promisify(client.get).bind(client);
+const setAsync = promisify(client.set).bind(client);
+
+// ...other code implementations
+
+const reserveStockById = async (itemId, stock) => {
+  await setAsync(`item.${itemId}`, stock);
+};
+
+const getCurrentReservedStockById = async (itemId) => {
+  const reservedStock = await getAsync(`item.${itemId}`);
+  return reservedStock ? parseInt(reservedStock, 10) : 0;
+};
+```
+
+7. **Step 7:Product Detail Route**
+
+- A route `GET /list_products/:itemId` is created to retrieve product details by ID, including the current available stock:
+
+```javascript
+const getItemById = (id) => listProducts.find((item) => item.itemId === id);
+
+// Route to get the list of all products
+app.get('/list_products', (req, res) => {
+  res.json(listProducts.map((product) => ({
+    itemId: product.itemId,
+    itemName: product.itemName,
+    price: product.price,
+    initialAvailableQuantity: product.initialAvailableQuantity,
+  })));
+});
+```
+
+8. **Step 8:Reserve Product Route**
+
+- A route `GET /reserve_product/:itemId` is implemented to reserve a product. It checks availability and updates the reserved stock in Redis:
+
+```javascript
+app.get('/reserve_product/:itemId', async (req, res) => {
+  const itemId = parseInt(req.params.itemId, 10);
+  const item = getItemById(itemId);
+
+  if (!item) {
+    return res.json({ status: 'Product not found' });
+  }
+
+  const currentQuantity = await getCurrentReservedStockById(itemId);
+
+  if (currentQuantity === 0) {
+    return res.json({ status: 'Not enough stock available', itemId });
+  }
+
+  await reserveStockById(itemId, currentQuantity - 1);
+
+  return res.json({ status: 'Reservation confirmed', itemId });
+});
+```
+
+9. **Step 9:Running the Server**
+
+- The server is started using the command `npm run dev 9-stock.js`:
+
+```bash
+# Output
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec 'babel-node --no-warnings --presets @babel/preset-env' -- 9-stock.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 9-stock.js`
+Server is running on port 1245
+
+```
+
+#### (II) Expected Results
+
+After running the express server on terminal 1 and executing the following commands on terminal 2, the expected results are as follows:
+
+1. **List Products:**
+
+- Executing the command `curl localhost:1245/list_products; echo ""` should return a JSON array of available products:
+
+```bash
+[{"itemId":1,"itemName":"Suitcase 250","price":50,"initialAvailableQuantity":4},{"itemId":2,"itemName":"Suitcase 450","price":100,"initialAvailableQuantity":10},{"itemId":3,"itemName":"Suitcase 650","price":350,"initialAvailableQuantity":2},{"itemId":4,"itemName":"Suitcase 1050","price":550,"initialAvailableQuantity":5}]
+```
+
+2. **Product Details:**
+
+- Executing the command `curl localhost:1245/list_products/1; echo ""` should return product details including the current available stock:
+
+```bash
+{"itemId":1,"itemName":"Suitcase 250","price":50,"initialAvailableQuantity":4,"currentQuantity":0}
+```
+
+3. **Reserve Product:**
+
+Executing the command `curl localhost:1245/reserve_product/1; echo ""` should reserve a product, updating the stock in Redis:
+
+```bash
+{"status":"Not enough stock available","itemId":1}
+```
+
+#### (IV) Additional Notes
+
+- Promisify is used with Redis for asynchronous handling.
+
+- `await/async` keywords are utilized for handling asynchronous operations.
+
+- The server always returns results in JSON format.
+
 
 ## Author
 
