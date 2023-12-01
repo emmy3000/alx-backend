@@ -1413,39 +1413,39 @@ The goal of Task 13, "Can I have a seat?" is to create a seat reservation system
 
 1. **Step 1: Redis Setup**
 
-  - Create a Redis Client (`redis.createClient()`): Establish a connection to the Redis server using the redis library.
+  - *Create a Redis Client (`redis.createClient()`)*: Establish a connection to the Redis server using the redis library.
 
-  - Implement `reserveSeat` Function: Create a function that takes a seat number as an argument and sets the key `available_seats` in Redis to that number.
+  - *Implement `reserveSeat` Function*: Create a function that takes a seat number as an argument and sets the key `available_seats` in Redis to that number.
 
-  - Implement `getCurrentAvailableSeats` Function: Develop a function that retrieves the current number of available seats from Redis using `promisify` for Redis commands.
+  - *Implement `getCurrentAvailableSeats` Function*: Develop a function that retrieves the current number of available seats from Redis using `promisify` for Redis commands.
 
-  - Initialize Seats: Set the initial number of available seats to 50 when launching the application.
+  - *Initialize Seats*: Set the initial number of available seats to 50 when launching the application.
 
-  - Initialize Reservation Status: Create a boolean variable (`reservationEnabled`) and set it to true. This variable is later turned to false when no seats are available.
+  - *Initialize Reservation Status*: Create a boolean variable (`reservationEnabled`) and set it to true. This variable is later turned to false when no seats are available.
 
 2. **Step 2: Kue Queue Setup**
 
-  - Create a Kue Queue (`kue.createQueue()`): Set up a job queue using the kue library.
+  - *Create a Kue Queue (`kue.createQueue()`)*: Set up a job queue using the kue library.
 
 3. **Step 3: Express Server Setup**
 
-  - Create an Express Server (`express()`): Set up an Express server to listen on port 1245.
+  - *Create an Express Server (`express()`)*: Set up an Express server to listen on port 1245.
 
 4. **Step 4: API Routes**
 
-  - Implement `GET /available_seats` Route: Implement a route that returns the number of available seats in JSON format.
+  - *Implement `GET /available_seats` Route*: Implement a route that returns the number of available seats in JSON format.
 
 ```bash
 curl localhost:1245/available_seats ; echo ""
 ```
 
-  - Implement `GET /reserve_seat` Route: Implement a route that reserves a seat and queues a job using Kue. It returns the status of the reservation.
+  - *Implement `GET /reserve_seat` Route*: Implement a route that reserves a seat and queues a job using Kue. It returns the status of the reservation.
 
 ```bash
 curl localhost:1245/reserve_seat ; echo ""
 ```
 
-  - Implement `GET /process` Route: Implement a route that processes the queue, decreases the number of available seats, and updates the reservation status.
+  - *Implement `GET /process` Route*: Implement a route that processes the queue, decreases the number of available seats, and updates the reservation status.
 
 ```bash
 curl localhost:1245/process ; echo ""
@@ -1453,11 +1453,11 @@ curl localhost:1245/process ; echo ""
 
 5. **Step 5: Job Handling**
 
-  - Job Completion and Failure Logging: Log the completion or failure of jobs in the console with the job ID and relevant messages.
+  - *Job Completion and Failure Logging*: Log the completion or failure of jobs in the console with the job ID and relevant messages.
 
 6. **Step 6: Testing**
 
-  - Testing the System: Test the system by making requests to the implemented routes and observing the output.
+  - *Testing the System*: Test the system by making requests to the implemented routes and observing the output.
 
 ```bash
 for n in {1..50}; do curl localhost:1245/reserve_seat ; echo ""; done
