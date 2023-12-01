@@ -297,7 +297,7 @@ Redis client not connected to the server: Redis connection to 127.0.0.1:6379 fai
 Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
 Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
 Redis client not connected to the server: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
-^C
+
 ```
 
 - Execute Redis server in the background and discard its output:
@@ -320,7 +320,7 @@ npm run dev 0-redis_client.js
 [nodemon] watching extensions: js,mjs,cjs,json
 [nodemon] starting `babel-node --presets @babel/preset-env 0-redis_client.js`
 Redis client connected to the server
-^C
+
 ```
 
 - Lists all running processes and search for the process related to redis-server:
@@ -375,7 +375,7 @@ Redis client connected to the server
 School
 Reply: OK
 100
-^C
+
 ```
 
 #### (IV) Explanation
@@ -509,7 +509,7 @@ Reply: 1
   Cali: '40',
   Paris: '2'
 }
-^C
+
 ```
 
 #### (IV) Explanation
@@ -596,6 +596,7 @@ This task involves creating two Node.js scripts, `5-subscriber.js` and `5-publis
    Holberton Student #2 starts course
    KILL_SERVER
    [nodemon] clean exit - waiting for changes before restart
+
    ```
 
    - Terminal 2 Output (Publisher):
@@ -606,6 +607,7 @@ This task involves creating two Node.js scripts, `5-subscriber.js` and `5-publis
    About to send Holberton Student #2 starts course
    About to send KILL_SERVER
    About to send Holberton Student #3 starts course
+
    ```
 
 #### (IV) Explanation
@@ -684,6 +686,7 @@ After executing the script, you should see output similar to the following:
 [nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 6-job_creator.js`
 Kue UI started on port 3000
 Notification job created: 1
+
 ```
 
 #### (IV) Notes
@@ -786,7 +789,7 @@ In Terminal 2, you should see log messages indicating the processor is ready and
 [nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 6-job_processor.js`
 Job processor is ready
 Sending notification to 1234567890, with message: Hello, this is a notification!
-^C%
+
 ```
 
 **Note**: Ensure a Redis server is running for Kue storage, and two Node processes are used to run each script simultaneously.
@@ -914,7 +917,7 @@ Notification job created: 12
 Notification job created: 13
 Notification job created: 14
 Notification job created: 15
-^C%
+
 ```
 
 ---
@@ -1016,6 +1019,108 @@ Notification job 16 failed: Phone number 4153518780 is blacklisted
 
 This implementation ensures efficient tracking of job progress, proper handling of blacklisted numbers, and successful notification processing for non-blacklisted numbers using Kue job queues.
 
+---
+
+### Task 10. Writing the job creation function
+
+In this task, we were required to implement a job creation function named `createPushNotificationsJobs` in a file named `8-job.js`. The function takes an array of job objects (`jobs`) and a Kue queue (`queue`) as arguments. For each job in the array, a job is created in the Kue queue named `push_notification_code_3`. Various events such as job creation, completion, failure, and progress are logged to the console.
+
+---
+
+#### (I) Steps and Implementations
+
+  - **Step 1:  Function Signature**
+
+  Documentation for the function's structure provided in the following format:
+
+  ```javascript
+  /**
+   * Create push notification jobs.
+  * @param {Object[]} jobs - Array of job objects.
+  * @param {kue.Queue} queue - Kue queue.
+  * @throws {Error} If jobs is not an array.
+  */
+  function createPushNotificationsJobs(jobs, queue) {
+    // Function body
+  }
+  ```
+
+  - **Step 2: Input Validation**
+
+  The function checks whether the provided `jobs` parameter is an array. If not, it throws an error with the message "Jobs is not an array":
+
+  ```javascript
+  if (!Array.isArray(jobs)) {
+    throw new Error('Jobs is not an array');
+  }
+  ```
+
+  - **Step 3: Job Creation and Event Handling**
+
+  For each job in the `jobs` array, a new job is created in the Kue `queue push_notification_code_3`. Event handlers are set up for successful completion, failure, and progress of the job. The following events are logged to the console:
+
+    - Job Creation Success:
+
+    ```javascript
+    job.on('complete', () => {
+      console.log(`Notification job ${job.id} completed`);
+    });
+    ```
+
+    - Job Failure:
+
+    ```javascript
+    job.on('failed', (errorMessage) => {
+      console.log(`Notification job ${job.id} failed: ${errorMessage}`);
+    });
+    ```
+
+    - Job Progress:
+
+    ```javascript
+    job.on('progress', (progress) => {
+      console.log(`Notification job ${job.id} ${progress}% complete`);
+    });
+    ```
+
+    - Job Saved to Queue:
+
+    ```javascript
+    job.save((err) => {
+      if (!err) {
+        console.log(`Notification job created: ${job.id}`);
+      }
+    });
+    ```
+
+#### (II) Testing
+
+The script `8-job-main.js` demonstrates the usage of the `createPushNotificationsJobs` function by creating a Kue `queue` and passing a sample list of `jobs`. The expected output includes notifications for job creation and progress:
+
+```bash
+npm run dev 8-job-main.js
+```
+
+#### (III) Expected Output
+
+The expected output includes confirmation messages and the Redis server's responses:
+
+```bash
+> queuing_system_in_js@1.0.0 dev
+> nodemon --exec 'babel-node --no-warnings --presets @babel/preset-env' -- 8-job-main.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `babel-node --no-warnings --presets @babel/preset-env 8-job-main.js`
+Notification job created: 27
+
+```
+
+#### (IV) Conclusion
+
+This task ensures the successful creation and handling of push notification jobs in a Kue queue, providing a foundation for further development and integration within the queuing system.
 
 ## Author
 
