@@ -926,7 +926,7 @@ Notification job created: 15
 
 ---
 
-### Task 8. Track progress and errors with Kue: Create the Job creator
+### Task 9. Track progress and errors with Kue: Create the Job creator
 
 In this task, we aim to create a job processor using Kue that tracks the progress of jobs and handles errors based on a predefined set of blacklisted phone numbers. The job processor will listen to a Kue queue, process jobs, and perform specific actions based on the job data.
 
@@ -1136,7 +1136,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
 
 #### (I) Steps and Implementations
 
-  - **Step 1: Import Dependencies**
+  1. **Step 1: Import Dependencies**
 
   Import the necessary dependencies, including the testing library (e.g., Chai), the Kue library, and the function to be tested (`createPushNotificationsJobs`):
 
@@ -1146,7 +1146,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
   import createPushNotificationsJobs from './8-job.js';
   ```
 
-  - **Step 2: Set up Queue for Testing**
+  2. **Step 2: Set up Queue for Testing**
 
   Create a new Kue queue and enter test mode without processing jobs. This ensures that the tests won't interfere with the actual job processing:
 
@@ -1163,7 +1163,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
   });
   ```
 
-  - **Step 3: Clean Up Queue after Tests**
+  3. **Step 3: Clean Up Queue after Tests**
 
   Clear the queue and exit test mode after running the tests. This ensures a clean state for subsequent tests:
 
@@ -1174,7 +1174,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
   });
   ```
 
-  - **Step 4: Write Test Cases**
+  4. **Step 4: Write Test Cases**
 
   Write test cases for various scenarios, such as displaying an error message if jobs is not an array and creating new `jobs` in the queue:
 
