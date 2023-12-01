@@ -1122,6 +1122,94 @@ Notification job created: 27
 
 This task ensures the successful creation and handling of push notification jobs in a Kue queue, providing a foundation for further development and integration within the queuing system.
 
+---
+
+### Task 11. Writing the test for job creation
+
+In this task, we focus on adding tests for the `createPushNotificationsJobs` function, ensuring its correct behavior and interactions with the Kue queue. Below are the steps and implementations used in resolving this task.
+
+---
+
+#### (I) Steps and Implementations
+
+  - **Step 1: Import Dependencies**
+
+  Import the necessary dependencies, including the testing library (e.g., Chai), the Kue library, and the function to be tested (`createPushNotificationsJobs`):
+
+  ```javascript
+  import { expect } from 'chai';
+  import kue from 'kue';
+  import createPushNotificationsJobs from './8-job.js';
+  ```
+
+  - **Step 2: Set up Queue for Testing**
+
+  Create a new Kue queue and enter test mode without processing jobs. This ensures that the tests won't interfere with the actual job processing:
+
+  ```javascript
+  describe('createPushNotificationsJobs', () => {
+    let queue;
+
+    before(() => {
+      queue = kue.createQueue();
+      queue.testMode.enter();
+    });
+
+    // ... (Test cases will be added here)
+  });
+  ```
+
+  - **Step 3: Clean Up Queue after Tests**
+
+  Clear the queue and exit test mode after running the tests. This ensures a clean state for subsequent tests:
+
+  ```javascript
+  after(() => {
+    queue.testMode.clear();
+    queue.testMode.exit();
+  });
+  ```
+
+  - **Step 4: Write Test Cases**
+
+  Write test cases for various scenarios, such as displaying an error message if jobs is not an array and creating new `jobs` in the queue:
+
+  ```javascript
+  it('should display an error message if jobs is not an array', () => {
+    // ... (Test logic for this case)
+  });
+
+  it('should create two new jobs to the queue', () => {
+    // ... (Test logic for this case)
+  });
+  ```
+
+  In the test cases, assertions are made using Chai's `expect` to validate the expected behavior of the `createPushNotificationsJobs` function.
+
+#### (II) Expected Result
+
+Upon executing the test suite (`npm test 8-job.test.js`), the output should indicate that the test cases passed successfully, ensuring the correctness of the `createPushNotificationsJobs` function:
+
+```bash
+> queuing_system_in_js@1.0.0 test
+> ./node_modules/.bin/mocha --require @babel/register --exit 8-job.test.js
+
+
+
+  createPushNotificationsJobs
+    ✔ should display an error message if jobs is not an array
+Notification job created: 1
+Notification job created: 2
+    ✔ should create two new jobs to the queue
+
+
+  2 passing (25ms)
+
+```
+
+These results confirm that the function handles different scenarios correctly and creates jobs in the Kue queue as expected.
+
+
 ## Author
 
 Emeka Emodi
