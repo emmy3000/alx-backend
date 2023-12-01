@@ -934,7 +934,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
 
 #### (I) Steps and Implementations
 
-  - **Step 1: Blacklisted Phone Numbers**
+1. **Step 1: Blacklisted Phone Numbers**
 
   Firstly, we create an array named `blacklistedNumbers` containing phone numbers that are blacklisted. In this case, the numbers *4153518780* and *4153518781* are added to the blacklist: 
 
@@ -942,7 +942,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   const blacklistedNumbers = ['4153518780', '4153518781'];
   ```
 
-  - **Step 2: sendNotification Function**
+2. **Step 2: sendNotification Function**
 
   Next, we define a function named `sendNotification` that takes four arguments - `phoneNumber`, `message`, `job`, and `done`. This function is responsible for tracking job progress, checking if the phone number is blacklisted, logging progress, and completing the job:
 
@@ -962,7 +962,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   };
   ```
 
-  - **Step 3: Kue Queue Setup**
+3. **Step 3: Kue Queue Setup**
 
   Create a Kue queue named `push_notification_code_2`:
 
@@ -970,7 +970,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   const queue = kue.createQueue();
   ```
 
-  - **Step 4: Queue Processing**
+4. **Step 4: Queue Processing**
 
   Process jobs from the `push_notification_code_2` queue, with a concurrency limit of 2:
 
@@ -981,23 +981,23 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   });
   ```
 
-  - **Step 5: Terminal Output**
+5. **Step 5: Terminal Output**
 
   Executing the job creator script (`7-job_creator.js`) and job processor script (`7-job_processor.js`) simultaneously should produce the following output:
 
-    - Terminal 1 (Job Creator):
+  - Terminal 1 (Job Creator):
 
-      - Creates and logs notification jobs.
+    - Creates and logs notification jobs.
 
-    - Terminal 2 (Job Processor):
+  - Terminal 2 (Job Processor):
 
-      - Logs job processor readiness.
+    - Logs job processor readiness.
 
-      - Sends notifications to non-blacklisted numbers.
+    - Sends notifications to non-blacklisted numbers.
 
-      - Fails notifications for blacklisted numbers.
+    - Fails notifications for blacklisted numbers.
 
-      - Logs progress and completion for each job.
+    - Logs progress and completion for each job.
 
 #### (II) Expected Result
 
@@ -1033,7 +1033,7 @@ In this task, we were required to implement a job creation function named `creat
 
 #### (I) Steps and Implementations
 
-  - **Step 1:  Function Signature**
+  **Step 1:  Function Signature**
 
   Documentation for the function's structure provided in the following format:
 
@@ -1049,7 +1049,7 @@ In this task, we were required to implement a job creation function named `creat
   }
   ```
 
-  - **Step 2: Input Validation**
+  **Step 2: Input Validation**
 
   The function checks whether the provided `jobs` parameter is an array. If not, it throws an error with the message "Jobs is not an array":
 
@@ -1059,11 +1059,11 @@ In this task, we were required to implement a job creation function named `creat
   }
   ```
 
-  - **Step 3: Job Creation and Event Handling**
+  **Step 3: Job Creation and Event Handling**
 
   For each job in the `jobs` array, a new job is created in the Kue `queue push_notification_code_3`. Event handlers are set up for successful completion, failure, and progress of the job. The following events are logged to the console:
 
-    - Job Creation Success:
+  - Job Creation Success:
 
   ```javascript
   job.on('complete', () => {
@@ -1071,7 +1071,7 @@ In this task, we were required to implement a job creation function named `creat
   });
   ```
 
-    - Job Failure:
+  - Job Failure:
 
   ```javascript
   job.on('failed', (errorMessage) => {
@@ -1079,7 +1079,7 @@ In this task, we were required to implement a job creation function named `creat
   });
   ```
 
-    - Job Progress:
+  - Job Progress:
 
   ```javascript
   job.on('progress', (progress) => {
