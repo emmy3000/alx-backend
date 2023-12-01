@@ -1308,7 +1308,6 @@ const getCurrentReservedStockById = async (itemId) => {
 ```javascript
 const getItemById = (id) => listProducts.find((item) => item.itemId === id);
 
-// Route to get the list of all products
 app.get('/list_products', (req, res) => {
   res.json(listProducts.map((product) => ({
     itemId: product.itemId,
