@@ -287,7 +287,7 @@ npm install redis
 - Run the script using the following command:
 
 ```bash
-# source code's execution of the Redis client located in the root directory of the project
+# Error: ECONNREFUSED - Unable to connect to the Redis server. Make sure the Redis server is running.
 npm run dev 0-redis_client.js
 > queuing_system_in_js@1.0.0 dev
 > nodemon --exec babel-node --presets @babel/preset-env 0-redis_client.js
@@ -314,6 +314,7 @@ Redis client not connected to the server: Redis connection to 127.0.0.1:6379 fai
 - Run the script again:
 
 ```bash
+# Success: Redis client successfully connected to the server.
 npm run dev 0-redis_client.js
 > queuing_system_in_js@1.0.0 dev
 > nodemon --exec babel-node --presets @babel/preset-env 0-redis_client.js
