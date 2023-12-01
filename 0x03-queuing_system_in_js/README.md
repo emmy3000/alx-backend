@@ -1401,6 +1401,109 @@ Executing the command `curl localhost:1245/reserve_product/1; echo ""` should re
 
 - The server always returns results in JSON format.
 
+---
+
+### Task 13. Can I have a seat?
+
+The goal of Task 13, "Can I have a seat?" is to create a seat reservation system using Redis for data storage and Kue for job queue processing. The system provides an HTTP API with routes to check the number of available seats, reserve a seat, and process seat reservations asynchronously.
+
+---
+
+#### (I) Steps and Implementation
+
+1. **Step 1: Redis Setup**
+
+  Create a Redis Client (`redis.createClient()`): 
+    
+    - Establish a connection to the Redis server using the redis library.
+
+  Implement `reserveSeat` Function: 
+  
+    - Create a function that takes a seat number as an argument and sets the key `available_seats` in Redis to that number.
+
+  Implement `getCurrentAvailableSeats` Function: 
+    
+    - Develop a function that retrieves the current number of available seats from Redis using `promisify` for Redis commands.
+
+  Initialize Seats: 
+  
+    - Set the initial number of available seats to 50 when launching the application.
+
+  Initialize Reservation Status: 
+  
+    - Create a boolean variable (`reservationEnabled`) and set it to true. This variable is later turned to false when no seats are available.
+
+2. **Step 2: Kue Queue Setup**
+
+  Create a Kue Queue (`kue.createQueue()`): 
+  
+    - Set up a job queue using the kue library.
+
+3. **Step 3: Express Server Setup**
+
+  Create an Express Server (`express()`): 
+  
+    - Set up an Express server to listen on port 1245.
+
+4. **Step 4: API Routes**
+
+  Implement `GET /available_seats` Route: 
+  
+    - Implement a route that returns the number of available seats in JSON format.
+
+    ```bash
+    curl localhost:1245/available_seats ; echo ""
+    ```
+
+  Implement `GET /reserve_seat` Route: 
+  
+    - Implement a route that reserves a seat and queues a job using Kue. It returns the status of the reservation.
+
+    ```bash
+    curl localhost:1245/reserve_seat ; echo ""
+    ```
+
+  Implement `GET /process` Route: 
+  
+    - Implement a route that processes the queue, decreases the number of available seats, and updates the reservation status.
+
+    ```bash
+    curl localhost:1245/process ; echo ""
+    ```
+
+5. **Step 5: Job Handling**
+
+  Job Completion and Failure Logging: 
+  
+    - Log the completion or failure of jobs in the console with the job ID and relevant messages.
+
+6. **Step 6: Testing**
+
+  Testing the System: 
+  
+    - Test the system by making requests to the implemented routes and observing the output.
+
+    ```bash
+    for n in {1..50}; do curl localhost:1245/reserve_seat ; echo ""; done
+    ```
+
+#### (II) Requirements
+
+  1. **Promisify with Redis**: Utilize `promisify` with Redis commands for asynchronous operations.
+
+  2. **Async/Await**: Use the `await/async` keywords for asynchronous operations to enhance code readability.
+
+  3. **JSON Format**: Ensure that the format returned by the web application is always in JSON and not text.
+
+  4. **Seat Reservation Limit**: Implement logic to allow only the allowed amount of seats to be reserved.
+
+  5. **Display Correct Number of Seats**: Ensure that the main route displays the correct number of available seats.
+
+#### (III) Conclusion
+
+This documentation provides an overview of the implementation steps for Task 13, demonstrating how to create a seat reservation system with Redis and Kue in an Express server. The system handles seat reservation requests, processes them asynchronously, and maintains the correct count of available seats.
+
+For more details, refer to the provided source code in the GitHub repository under the specified file (`100-seat.js`).
 
 ## Author
 
