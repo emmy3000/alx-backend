@@ -270,13 +270,13 @@ npm install redis
 
 - Using Babel and ES6, write a script named 0-redis_client.js.
 
-    - Connect to the Redis server running on your machine.
+- Connect to the Redis server running on your machine.
 
-    - Log to the console:
+- Log to the console:
 
-        - `"Redis client connected to the server"` when the connection to Redis works correctly.
+  - `"Redis client connected to the server"` when the connection to Redis works correctly.
 
-        - `"Redis client not connected to the server: ERROR_MESSAGE"` when the connection to Redis fails.
+  - `"Redis client not connected to the server: ERROR_MESSAGE"` when the connection to Redis fails.
 
 #### (III) Additional Requirements
 
@@ -347,15 +347,15 @@ This project implements a Node.js script (`1-redis_op.js`) that serves as a Redi
 
 - Using Babel and ES6, write a script named `1-redis_op.js`.
 
-    - Import the `redis` client library.
+- Import the `redis` client library.
 
-    - Create a `Redis` client.
+- Create a `Redis` client.
 
-    - Subscribe to the channel `holberton school channel` and display the message received.
+- Subscribe to the channel `holberton school channel` and display the message received.
 
-    - When a message with the pattern `holberton school channel` is received, call the function `displaySchoolValue` to display the value received.
+- When a message with the pattern `holberton school channel` is received, call the function `displaySchoolValue` to display the value received.
 
-    - When a message with the pattern `holberton school channel` is received, call the function `setNewSchool` to set the value `Holberton` as value for the key `School`.
+- When a message with the pattern `holberton school channel` is received, call the function `setNewSchool` to set the value `Holberton` as value for the key `School`.
   
 #### (II) Run The Script Defined Implemented The Task
 
@@ -367,7 +367,7 @@ npm run dev 1-redis_op.js
 
 #### (III) Expected Output
 
-  - The expected output includes confirmation messages and the Redis server's responses:
+- The expected output includes confirmation messages and the Redis server's responses:
 
 ```bash
 [nodemon] 3.0.1
@@ -384,17 +384,17 @@ Reply: OK
 
 #### (IV) Explanation
 
-  - Redis Client Connection:
+- Redis Client Connection:
         
-    - The script connects to the Redis server, and a message is logged to the console upon successful connection.
+  - The script connects to the Redis server, and a message is logged to the console upon successful connection.
 
-  - Basic Operations:
+- Basic Operations:
     
-    - `displaySchoolValue('Holberton')`: Retrieves and logs the value for the key 'Holberton'.
+  - `displaySchoolValue('Holberton')`: Retrieves and logs the value for the key 'Holberton'.
     
-    - `setNewSchool('HolbertonSanFrancisco', '100')`: Sets the value '100' for the key 'HolbertonSanFrancisco'.
+  - `setNewSchool('HolbertonSanFrancisco', '100')`: Sets the value '100' for the key 'HolbertonSanFrancisco'.
     
-    - `displaySchoolValue('HolbertonSanFrancisco')`: Retrieves and logs the value for the key 'HolbertonSanFrancisco'.
+  - `displaySchoolValue('HolbertonSanFrancisco')`: Retrieves and logs the value for the key 'HolbertonSanFrancisco'.
 
 ---
 
@@ -408,15 +408,15 @@ The script `2-redis_op_async.js` leverages the `redis` package to establish a co
 
 - Using Babel and ES6, write a script named `2-redis_op_async.js`.
 
-    - Import the `redis` client library.
+- Import the `redis` client library.
 
-    - Create a `Redis` client.
+- Create a `Redis` client.
 
-    - Subscribe to the channel `holberton school channel` and display the message received.
+- Subscribe to the channel `holberton school channel` and display the message received.
 
-    - When a message with the pattern `holberton school channel` is received, call the function `displaySchoolValue` to display the value received.
+- When a message with the pattern `holberton school channel` is received, call the function `displaySchoolValue` to display the value received.
 
-    - When a message with the pattern `holberton school channel` is received, call the function `setNewSchool` to set the value `Holberton` as value for the key `School`.
+- When a message with the pattern `holberton school channel` is received, call the function `setNewSchool` to set the value `Holberton` as value for the key `School`.
 
 #### (II) Run The Script Defined Implemented The Task
 
@@ -454,29 +454,29 @@ This task involves using the Redis client in Node.js to store a hash value with 
 
 - Using Babel and ES6, write a script named `4-redis_advanced_op.js`.
 
-    - Import the `redis` client library.
+- Import the `redis` client library.
 
-    - Create a `Redis` client.
+- Create a `Redis` client.
 
-    - Define a function named `main` that will execute all the following functions:
+- Define a function named `main` that will execute all the following functions:
 
-        - `client.on('connect', function)`: Log to the console the string `Redis client connected to the server` when the connection to Redis works correctly.
+  - `client.on('connect', function)`: Log to the console the string `Redis client connected to the server` when the connection to Redis works correctly.
 
-        - `client.on('error', function)`: Log to the console the string `Redis client not connected to the server: ERROR_MESSAGE` when the connection to Redis fails.
+  - `client.on('error', function)`: Log to the console the string `Redis client not connected to the server: ERROR_MESSAGE` when the connection to Redis fails.
 
-        - `client.hset('HolbertonSchools', 'Portland', '50', function)`: Set the value `50` for the key `Portland` in the hash `HolbertonSchools`.
+  - `client.hset('HolbertonSchools', 'Portland', '50', function)`: Set the value `50` for the key `Portland` in the hash `HolbertonSchools`.
 
-        - `client.hset('HolbertonSchools', 'Seattle', '80', function)`: Set the value `80` for the key `Seattle` in the hash `HolbertonSchools`.
+  - `client.hset('HolbertonSchools', 'Seattle', '80', function)`: Set the value `80` for the key `Seattle` in the hash `HolbertonSchools`.
 
-        - `client.hset('HolbertonSchools', 'New York', '20', function)`: Set the value `20` for the key `New York` in the hash `HolbertonSchools`.
+  - `client.hset('HolbertonSchools', 'New York', '20', function)`: Set the value `20` for the key `New York` in the hash `HolbertonSchools`.
 
-        - `client.hset('HolbertonSchools', 'Bogota', '20', function)`: Set the value `20` for the key `Bogota` in the hash `HolbertonSchools`.
+  - `client.hset('HolbertonSchools', 'Bogota', '20', function)`: Set the value `20` for the key `Bogota` in the hash `HolbertonSchools`.
 
-        - `client.hset('HolbertonSchools', 'Cali', '40', function)`: Set the value `40` for the key `Cali` in the hash `HolbertonSchools`.
+  - `client.hset('HolbertonSchools', 'Cali', '40', function)`: Set the value `40` for the key `Cali` in the hash `HolbertonSchools`.
 
-        - `client.hset('HolbertonSchools', 'Paris', '2', function)`: Set the value `2` for the key `Paris` in the hash `HolbertonSchools`.
+  - `client.hset('HolbertonSchools', 'Paris', '2', function)`: Set the value `2` for the key `Paris` in the hash `HolbertonSchools`.
 
-        - `client.hgetall('HolbertonSchools', function)`: Display all the keys and values stored in the hash `HolbertonSchools`.
+  - `client.hgetall('HolbertonSchools', function)`: Display all the keys and values stored in the hash `HolbertonSchools`.
 
 #### (II) Run The Script Defined Implemented The Task
 
@@ -518,13 +518,13 @@ Reply: 1
 
 #### (IV) Explanation
 
-  - Redis Client Connection:
+- Redis Client Connection:
         
-    - The script connects to the Redis server, and a message is logged to the console upon successful connection.
+  - The script connects to the Redis server, and a message is logged to the console upon successful connection.
   
-  - Modularity:
+- Modularity:
 
-    - The `createHash` and `displayHash` functions contribute to the script's modularity. This design choice enhances efficiency and maintainability by isolating specific functionalities into separate, reusable functions.
+  - The `createHash` and `displayHash` functions contribute to the script's modularity. This design choice enhances efficiency and maintainability by isolating specific functionalities into separate, reusable functions.
 
   - Reply Values:
 
@@ -638,34 +638,34 @@ This script, `6-job_creator.js`, is designed to create a job queue using the Kue
 
 3. **Define Job Data:**
 
-   - An object `jobData` is created containing job data with the format:
+  - An object `jobData` is created containing job data with the format:
 
-     ```javascript
-     {
-       phoneNumber: '7085558733',
-       message: 'Hello, this is a notification!',
-     }
-     ```
+    ```javascript
+    {
+      phoneNumber: '7085558733',
+      message: 'Hello, this is a notification!',
+    }
+    ```
 
 4. **Create Job:**
 
-   - A job is created using the `queue.create` method with the specified queue name and job data.
+  - A job is created using the `queue.create` method with the specified queue name and job data.
 
 5. **Event Handlers:**
 
-   - Event handlers are attached to the job:
+  - Event handlers are attached to the job:
 
-     - `job.on('complete', ...)`: Logs a message when the job is completed.
+    - `job.on('complete', ...)`: Logs a message when the job is completed.
 
-     - `job.on('failed', ...)`: Logs a message when the job fails.
+    - `job.on('failed', ...)`: Logs a message when the job fails.
 
 6. **Save Job to Queue:**
 
-   - The job is saved to the queue using `job.save((err) => { ... });`.
+  - The job is saved to the queue using `job.save((err) => { ... });`.
 
 7. **Start Kue UI:**
 
-   - The Kue UI is started on port 3000 using `kue.app.listen(3000);`.
+  - The Kue UI is started on port 3000 using `kue.app.listen(3000);`.
 
 #### (II) How to Run
 
@@ -717,48 +717,48 @@ In this task, we create a job processor using Kue, a priority job queue for Node
 
 1. **Import Kue Library:**
 
-   - The script starts by importing the Kue library using:
+  - The script starts by importing the Kue library using:
    
-     ```javascript
-     import kue from 'kue';
-     ```
+    ```javascript
+    import kue from 'kue';
+    ```
 
 2. **Create Kue Queue:**
 
-    - A Kue queue named `push_notification_code` is created using:
+  - A Kue queue named `push_notification_code` is created using:
     
-      ```javascript
-      const queue = kue.createQueue();
-      ```
+    ```javascript
+    const queue = kue.createQueue();
+    ```
 
 3. **Define a Notification Function:**
 
-    - Create a function named `sendNotification` that takes `phoneNumber` and `message` as arguments and logs a notification message to the console:
+  - Create a function named `sendNotification` that takes `phoneNumber` and `message` as arguments and logs a notification message to the console:
 
-    ```javascript
-    const sendNotification = (phoneNumber, message) => {
+  ```javascript
+  const sendNotification = (phoneNumber, message) => {
     console.log(`Sending notification to ${phoneNumber}, with message: ${message}`);
-    };
-    ```
+  };
+  ```
 
 4. **Process Jobs from the Queue:**
 
-    - Write the queue process that listens for new jobs on `push_notification_code`. For each new job, it calls the `sendNotification` function with the phone number and message contained within the job data. Finally, mark the job as completed. 
+  - Write the queue process that listens for new jobs on `push_notification_code`. For each new job, it calls the `sendNotification` function with the phone number and message contained within the job data. Finally, mark the job as completed. 
 
-    ```javascript
-    queue.process('push_notification_code', (job, done) => {
+  ```javascript
+  queue.process('push_notification_code', (job, done) => {
     sendNotification(job.data.phoneNumber, job.data.message);
-    done();
-    });
-    ```
+  done();
+  });
+  ```
 
 5. **Output Ready Message:**
 
-    - Log a message to the console indicating that the job processor is ready:
+  - Log a message to the console indicating that the job processor is ready:
       
-      ```javascript
-      console.log('Job processor is ready');
-      ```
+  ```javascript
+  console.log('Job processor is ready');
+  ```
 
 #### (II) Running the Code
 
@@ -766,15 +766,15 @@ Execute the following commands in separate terminals:
 
   - Terminal 1 (Job Creator):
 
-    ```bash
-    npm run dev 6-job_creator.js
-    ```
+  ```bash
+  npm run dev 6-job_creator.js
+  ```
 
   - Terminal 2 (Job Processor):
 
-    ```bash
-    npm run dev 6-job_processor.js
-    ```
+  ```bash
+  npm run dev 6-job_processor.js
+  ```
   
   This will create a new job in Terminal 1, and the job processor in Terminal 2 will process it, sending notifications as specified.
 
@@ -810,40 +810,40 @@ In the file named `7-job_creator.js`, the goal is to create a Kue queue (`push_n
 
 1. **Array of Jobs:**
 
-   - An array named `jobs` is defined, containing objects with phone numbers and messages for notifications:
+  - An array named `jobs` is defined, containing objects with phone numbers and messages for notifications:
 
-   ```javascript
-   const jobs = [
+  ```javascript
+  const jobs = [
     // ... job objects
-   ];
-   ```
+  ];
+  ```
 
 2. **Kue Queue Creation:**
 
-   - A Kue queue named `push_notification_code_2` is created:
+  - A Kue queue named `push_notification_code_2` is created:
 
-    ```javascript
-    const queue = kue.createQueue();
-    ```
+  ```javascript
+  const queue = kue.createQueue();
+  ```
 
 3. **Job Creation Loop:**
 
-   - A loop iterates through the array of jobs, creating a new job for each object in the array:
+  - A loop iterates through the array of jobs, creating a new job for each object in the array:
 
-     ```javascript
-     {
-       jobs.forEach((jobData, index) => {
-          const job = queue.create('push_notification_code_2', jobData);
-          // ... event handlers and job save logic
-        });
-     }
-     ```
+  ```javascript
+  {
+    jobs.forEach((jobData, index) => {
+      const job = queue.create('push_notification_code_2', jobData);
+      // ... event handlers and job save logic
+    });
+   }
+    ```
 
 4. **Event Handlers:**
 
-   - Event handlers are defined for successful job completion, job failure, and job progress.
+  - Event handlers are defined for successful job completion, job failure, and job progress.
 
-    - Successful Job Completion:
+  - Successful Job Completion:
 
     ```javascript
     job.on('complete', () => {
@@ -869,15 +869,15 @@ In the file named `7-job_creator.js`, the goal is to create a Kue queue (`push_n
 
 5. **Job Save:**
 
-   - The job is saved to the queue, and corresponding messages are logged:
+  - The job is saved to the queue, and corresponding messages are logged:
 
-    ```javascript
-    job.save((err) => {
-      if (!err) {
-        console.log(`Notification job created: ${job.id}`);
-      }
-    });
-    ```
+  ```javascript
+  job.save((err) => {
+    if (!err) {
+      console.log(`Notification job created: ${job.id}`);
+    }
+  });
+  ```
 
 6. **Kue UI:**
 
@@ -934,7 +934,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
 
 #### (I) Steps and Implementations
 
-1. **Step 1: Blacklisted Phone Numbers**
+**Step 1: Blacklisted Phone Numbers**
 
   Firstly, we create an array named `blacklistedNumbers` containing phone numbers that are blacklisted. In this case, the numbers *4153518780* and *4153518781* are added to the blacklist: 
 
@@ -942,7 +942,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   const blacklistedNumbers = ['4153518780', '4153518781'];
   ```
 
-2. **Step 2: sendNotification Function**
+**Step 2: sendNotification Function**
 
   Next, we define a function named `sendNotification` that takes four arguments - `phoneNumber`, `message`, `job`, and `done`. This function is responsible for tracking job progress, checking if the phone number is blacklisted, logging progress, and completing the job:
 
@@ -962,7 +962,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   };
   ```
 
-3. **Step 3: Kue Queue Setup**
+**Step 3: Kue Queue Setup**
 
   Create a Kue queue named `push_notification_code_2`:
 
@@ -970,7 +970,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   const queue = kue.createQueue();
   ```
 
-4. **Step 4: Queue Processing**
+**Step 4: Queue Processing**
 
   Process jobs from the `push_notification_code_2` queue, with a concurrency limit of 2:
 
@@ -981,7 +981,7 @@ In this task, we aim to create a job processor using Kue that tracks the progres
   });
   ```
 
-5. **Step 5: Terminal Output**
+**Step 5: Terminal Output**
 
   Executing the job creator script (`7-job_creator.js`) and job processor script (`7-job_processor.js`) simultaneously should produce the following output:
 
@@ -1136,7 +1136,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
 
 #### (I) Steps and Implementations
 
-  1. **Step 1: Import Dependencies**
+  **Step 1: Import Dependencies**
 
   Import the necessary dependencies, including the testing library (e.g., Chai), the Kue library, and the function to be tested (`createPushNotificationsJobs`):
 
@@ -1146,7 +1146,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
   import createPushNotificationsJobs from './8-job.js';
   ```
 
-  2. **Step 2: Set up Queue for Testing**
+  **Step 2: Set up Queue for Testing**
 
   Create a new Kue queue and enter test mode without processing jobs. This ensures that the tests won't interfere with the actual job processing:
 
@@ -1163,7 +1163,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
   });
   ```
 
-  3. **Step 3: Clean Up Queue after Tests**
+  **Step 3: Clean Up Queue after Tests**
 
   Clear the queue and exit test mode after running the tests. This ensures a clean state for subsequent tests:
 
@@ -1174,7 +1174,7 @@ In this task, we focus on adding tests for the `createPushNotificationsJobs` fun
   });
   ```
 
-  4. **Step 4: Write Test Cases**
+  **Step 4: Write Test Cases**
 
   Write test cases for various scenarios, such as displaying an error message if jobs is not an array and creating new `jobs` in the queue:
 
@@ -1223,7 +1223,7 @@ The task involves creating an Express server that manages product reservations u
 
 #### (I) Steps and Implementation
 
-1. **Step 1: Dependencies**
+**Step 1: Dependencies**
 
 - The following dependencies are imported:
 
@@ -1233,7 +1233,7 @@ import redis from 'redis';
 import { promisify } from 'util';
 ```
 
-2. **Step 2: Data Setup**
+**Step 2: Data Setup**
 
 - An array named `listProducts` is created, containing information about various products, including their ID, name, price, and initial stock:
 
@@ -1246,7 +1246,7 @@ const listProducts = [
 ];
 ```
 
-3. **Step 3: Data Access**
+**Step 3: Data Access**
 
 - A function named `getItemById` is implemented to retrieve a product by its ID from `listProducts`:
 
@@ -1254,7 +1254,7 @@ const listProducts = [
 const getItemById = (id) => listProducts.find((item) => item.itemId === id);
 ```
 
-4. **Step 4:Express Server Setup**
+**Step 4:Express Server Setup**
 
 - An Express server is created to listen on port 1245:
 
@@ -1268,7 +1268,7 @@ app.listen(port, () => {
 });
 ```
 
-5. **Step 5:Products Route**
+**Step 5:Products Route**
 
 - A route `GET /list_products` is established to return the list of all available products in JSON format.
 
@@ -1283,7 +1283,7 @@ app.get('/list_products', (req, res) => {
 });
 ```
 
-6. **Step 6:Redis Setup**
+**Step 6:Redis Setup**
 
 - A Redis client is created to connect to the Redis server.
 - Two Redis functions, `reserveStockById` and `getCurrentReservedStockById`, are implemented for managing stock reservations.
@@ -1305,7 +1305,7 @@ const getCurrentReservedStockById = async (itemId) => {
 };
 ```
 
-7. **Step 7:Product Detail Route**
+**Step 7:Product Detail Route**
 
 - A route `GET /list_products/:itemId` is created to retrieve product details by ID, including the current available stock:
 
@@ -1322,7 +1322,7 @@ app.get('/list_products', (req, res) => {
 });
 ```
 
-8. **Step 8:Reserve Product Route**
+**Step 8:Reserve Product Route**
 
 - A route `GET /reserve_product/:itemId` is implemented to reserve a product. It checks availability and updates the reserved stock in Redis:
 
@@ -1347,7 +1347,7 @@ app.get('/reserve_product/:itemId', async (req, res) => {
 });
 ```
 
-9. **Step 9:Running the Server**
+**Step 9:Running the Server**
 
 - The server is started using the command `npm run dev 9-stock.js`:
 
@@ -1411,7 +1411,7 @@ The goal of Task 13, "Can I have a seat?" is to create a seat reservation system
 
 #### (I) Steps and Implementation
 
-1. **Step 1: Redis Setup**
+**Step 1: Redis Setup**
 
   - *Create a Redis Client (`redis.createClient()`)*: Establish a connection to the Redis server using the redis library.
 
@@ -1423,45 +1423,45 @@ The goal of Task 13, "Can I have a seat?" is to create a seat reservation system
 
   - *Initialize Reservation Status*: Create a boolean variable (`reservationEnabled`) and set it to true. This variable is later turned to false when no seats are available.
 
-2. **Step 2: Kue Queue Setup**
+**Step 2: Kue Queue Setup**
 
   - *Create a Kue Queue (`kue.createQueue()`)*: Set up a job queue using the kue library.
 
-3. **Step 3: Express Server Setup**
+**Step 3: Express Server Setup**
 
   - *Create an Express Server (`express()`)*: Set up an Express server to listen on port 1245.
 
-4. **Step 4: API Routes**
+**Step 4: API Routes**
 
   - *Implement `GET /available_seats` Route*: Implement a route that returns the number of available seats in JSON format.
 
-```bash
-curl localhost:1245/available_seats ; echo ""
-```
+  ```bash
+  curl localhost:1245/available_seats ; echo ""
+  ```
 
   - *Implement `GET /reserve_seat` Route*: Implement a route that reserves a seat and queues a job using Kue. It returns the status of the reservation.
 
-```bash
-curl localhost:1245/reserve_seat ; echo ""
-```
+  ```bash
+  curl localhost:1245/reserve_seat ; echo ""
+  ```
 
   - *Implement `GET /process` Route*: Implement a route that processes the queue, decreases the number of available seats, and updates the reservation status.
 
-```bash
-curl localhost:1245/process ; echo ""
-```
+  ```bash
+  curl localhost:1245/process ; echo ""
+  ```
 
-5. **Step 5: Job Handling**
+**Step 5: Job Handling**
 
   - *Job Completion and Failure Logging*: Log the completion or failure of jobs in the console with the job ID and relevant messages.
 
-6. **Step 6: Testing**
+**Step 6: Testing**
 
   - *Testing the System*: Test the system by making requests to the implemented routes and observing the output.
 
-```bash
-for n in {1..50}; do curl localhost:1245/reserve_seat ; echo ""; done
-```
+  ```bash
+  for n in {1..50}; do curl localhost:1245/reserve_seat ; echo ""; done
+  ```
 
 #### (II) Requirements
 
